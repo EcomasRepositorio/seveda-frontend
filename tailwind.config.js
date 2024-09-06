@@ -11,9 +11,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        customPurple800: '#Bd1967',
+        customPurple800: '#7d3665',
         customWhiteOcean: '#F0F0F0',
-        customPurple300: '#FAA32F',
+        customPurple300: '#ff6c8a',
         customOrange: '#FAA32F',
         customYellow: '#FFD700',
         customGradient: {

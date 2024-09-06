@@ -8,7 +8,7 @@ import Sidebar from "@/components/sidebar/Index";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Coporación - RIZO",
+  title: "Coporación - SEVEDA",
 };
 
 export default function RootLayout({
@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
-        <link rel="icon" href="logo/logo-layout.png" />
+        <link rel="icon" href="logo/layout.jpg" />
       </head>
       <body className={` ${inter.className}`}>
         <Sidebar />

@@ -11,17 +11,21 @@ import { title } from 'process';
 
 const texts = [
   {text1:"Para profesionales y público en general", colorText: "text-white"},
-  {text1:"La mejor opción para tu desarrollo profesional", colorText: "text-customOrange"},
+  {text1:"La mejor opción para tu desarrollo profesional", 
+    
+    
+    colorText: "text-customOrange"},
 ];
 
 const slides = [
   { title: "Diplomados y cursos", color: "from-customOrange to-customYellow" },
   { title: "Aprendizaje virtual", color: "from-customPurple800 to-customPurple300" },
 
+  
 ]
 
 const icons = [
-  {img1: <FaFacebookF />, img2: <FaInstagram />, img3: <FaTiktok />, img4: <FaWhatsapp />, img5: <FaYoutube />, color: "text-white"},
+  {img1: <FaFacebookF />, img2: <FaInstagram />, img3: <FaTiktok />, img4: <FaWhatsapp />, img5: <FaYoutube />, color: "text-customPurple300"},
   {img1: <FaFacebookF />, img2: <FaInstagram />, img3: <FaTiktok />, img4: <FaWhatsapp />, img5: <FaYoutube />, color: "text-customPurple800"},
 ]
 const Home = () => {
@@ -78,7 +82,7 @@ const Home = () => {
         }
 
         setIndex(slideNumber);
-      }, 10000);
+      }, 7000);
     }
     repeat();
 
@@ -100,7 +104,7 @@ const Home = () => {
           <motion.div
           key={i}
           className={`slide ${i === index ? 'active' : ''}`}>
-            <Image src={`/banner${i + 1}.png`} alt="rizo" width={1200} height={1200} className=''/>
+            <Image src={`/banners0${i + 1}.jpg`} alt="seveda" width={1200} height={1200} className=''/>
             <div
               className="relative mx-auto text-right max-w-screen-xl p-4 xl:mt-[200px] lg:mt-[200px] md:mt-40 mt-20">
               {icons.map((icon, i) => (
@@ -114,19 +118,19 @@ const Home = () => {
                 className={`py-1 lg:text-right px-1 opacity-[0.9] ${icon.color}`}>
                 <h1 className='lg:text-2xl text-2xl text-center inline-flex lg:gap-6 gap-3'>
                   <Link key={`link-${i}`} href='https://web.facebook.com/corp.rizo' target="_blank"
-                    className="border border-[#7042f88b] p-2 rounded-full transition-transform transform hover:scale-150 shadow-xl shadow-[#7042f88b]">
+                    className="border border-[#ffa29b] p-2 rounded-full transition-transform transform hover:scale-150 shadow-xl shadow-[#ffa29b]">
                     {icon.img1}
                   </Link>
                   <Link key={`link-${i+1}`} href='https://www.instagram.com/corporacion.rizo/' target="_blank"
-                    className="border border-[#7042f88b] p-2 rounded-full transition-transform transform hover:scale-150 shadow-xl shadow-[#7042f88b]">
+                    className="border border-[#ffa29b] p-2 rounded-full transition-transform transform hover:scale-150 shadow-xl shadow-[#ffa29b]">
                     {icon.img2}
                   </Link>
                   <Link key={`link-${i+2}`} href='https://www.tiktok.com/@corporacion.rizo' target="_blank"
-                    className="border border-[#7042f88b] p-2 rounded-full transition-transform transform hover:scale-150 shadow-xl shadow-[#7042f88b]">
+                    className="border border-[#ffa29b] p-2 rounded-full transition-transform transform hover:scale-150 shadow-xl shadow-[#ffa29b]">
                     {icon.img3}
                   </Link>
                   <Link key={`link-${i+3}`} href='https://wa.me/51961646248?text=Hola, deseo más información sobre los diplomados y cursos...' target="_blank"
-                    className="border border-[#7042f88b] p-2 rounded-full transition-transform transform hover:scale-150 shadow-xl shadow-[#7042f88b]">
+                    className="border border-[#ffa29b] p-2 rounded-full transition-transform transform hover:scale-150 shadow-xl shadow-[#ffa29b]">
                     {icon.img4}
                   </Link>
                 </h1>
