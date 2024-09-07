@@ -1,135 +1,188 @@
 "use client";
-import React, { useState } from "react";
-import { TfiMenuAlt } from "react-icons/tfi";
-import { GrClose } from "react-icons/gr";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 import { FaUserCog } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 
-const Sidebar = () => {
-  const [open, setOpen] = useState(false);
+import {
+  slideInFromLeft,
+  slideInFromRight,
+  slideInFromTop,
+} from "@/components/utils/motion";
+import { Button } from "@nextui-org/react";
 
+function Navbar() {
+  const [navbar, setNavbar] = useState(false);
   return (
-    <div className="sticky top-0 z-50">
-      <section className="bg-gradient-to-r from-customPurple800 to-customPurple800">
-        <div className="py-3 shadow-md max-w-screen-xl mx-auto p-2 flex justify-between items-center flex-wrap lg:flex-nowrap">
-          {/* Botón a la izquierda */}
-
-          {/* Logo */}
-          <Link href="/">
-            <Image
-              src="/logo/logo8.png"
-              width={1200}
-              height={1200}
-              alt="rizo-logo"
-              className="md:w-56 w-36 h-auto mb-2"
-              priority={true}
-            />
-          </Link>
-
-          <button
-            className="flex justify-center items-center md:hidden visible hover:scale-110 duration-300"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? (
-              <GrClose className="text-3xl text-customYellow z-50" />
-            ) : (
-              <TfiMenuAlt className="text-3xl text-customYellow mb-3" />
-            )}
-          </button>
-
-          <div className="flex lg:gap-10 text-customYellow font-extrabold md:text-sm text-[9.5px] text-center">
+    <div className="">
+      <nav className="w-full top-0 left-0 right-0  z-50 relative">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-center mx-auto p-2 lg:max-w-full backdrop-blur-md bg-customPurple800">
+          <div className="md:text-right text-center font-semibold w-full py-1  border-cyan-50">
             <Link
               href="/certs"
-              className="flex justify-center items-center border-customYellow hover:bg-customYellow hover:text-customPurple800 rounded-xl py-2 px-3 hover:scale-110 duration-300"
+              className="mr-4 py-1 px-6 bg-customPurple800 text-white border-2 border-white rounded-lg font-light hover:bg-customOrange/65 hover:border-customOrange/65 hover:scale-105 transition duration-300 ease-in-out"
             >
-              <span className="uppercase underline">Verificar certificado</span>
+              Verificar Certificado
             </Link>
             <Link
               href="https://site2.q10.com/login?ReturnUrl=%2F&aplentId=0959465f-37c3-4032-803b-bbfc499af7a3"
-              target="_blank"
-              className="flex justify-center items-center border-customYellow hover:bg-customYellow hover:text-customPurple800 rounded-xl py-2 px-3 hover:scale-110 duration-300"
+              className="mr-3 py-1 px-6 bg-customPurple800 text-white border-2 border-white rounded-lg font-light hover:bg-customOrange/65 hover:border-customOrange/65 hover:scale-105 transition duration-300 ease-in-out"
             >
-              <span className="uppercase underline">Aula virtual UNP</span>
-            </Link>
-            <Link
-              href="https://site2.q10.com/login?ReturnUrl=%2F&aplentId=efffcd33-0211-4598-8fa5-30f34ec79063"
-              target="_blank"
-              className="flex justify-center items-center border-customYellow hover:bg-customYellow hover:text-customPurple800 rounded-xl py-2 px-3 hover:scale-110 duration-300"
-            >
-              <span className="uppercase underline">Aula virtual UFRJ</span>
+              Aula Virtual
             </Link>
           </div>
+        </div>
 
-          <button
-            className="hidden md:flex justify-center items-center hover:scale-125 duration-300"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? (
-              <GrClose className="text-5xl text-customYellow z-50" />
-            ) : (
-              <TfiMenuAlt className="text-5xl text-customYellow" />
-            )}
-          </button>
+        <div className="justify-between px-2 lg:px-0 mx-auto lg:max-w-full md:items-center md:flex w-full bg-customPurple800/85 ">
+          <div>
+            <div className="items-center inline-flex justify-between py-3 md:py- lg:py- md:block">
+              {/* LOGO */}
+              <Link href="/">
+                <Image
+                  src="/logo/logo8.png"
+                  width={800}
+                  height={800}
+                  alt="binex_logo"
+                  className="w-full max-w-xs md:max-w-sm h-auto ml-auto"
+                  priority={true}
+                />
+              </Link>
 
-          {/* Menú lateral */}
+              {/* HAMBURGER BUTTON FOR MOBILE */}
+              <div className="md:hidden ml-44">
+                <button
+                  className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+                  onClick={() => setNavbar(!navbar)}
+                >
+                  {navbar ? (
+                    // Ícono de cerrar (FaTimes) cuando el menú está abierto
+                    <FaTimes className="text-white " size={30} />
+                  ) : (
+                    // Ícono de menú (FaBars) cuando el menú está cerrado
+                    <FaBars className="text-white" size={30} />
+                  )}
+                </button>
+              </div>
+              
+            </div>
+
+          </div>
+         
+          <div>
+          {/* Contenido para dispositivos móviles */}
           <div
-            className={`${
-              open ? "flex" : "hidden"
-            } fixed inset z-50 top-20 lg:right-96 right-10 justify-center items-center transition-all duration-300`}
+            className={`md:hidden fixed inset-0 z-50 transition-transform duration-300 ease-in-out ${
+              navbar ? "translate-x-0" : "translate-x-full"
+            } bg-black bg-opacity-90`}
           >
-            <div className="bg-customYellow/80 w-[300px] md:w-[450px] lg:w-[500px] rounded-2xl flex flex-col justify-center items-center">
-              <div className={`${open ? "py-3" : "hidden"}`}>
-                <ul className="text-xl items-center justify-center">
-                  <li className="font-bold text-customPurple800 hover:text-white mt-6 mb-10 py-1 px-1 text-center hover:bg-customPurple300 transition-transform transform hover:scale-110 w-60 mx-auto">
-                    <Link href="/" onClick={() => setOpen(!open)}>
-                      Inicio
+            <div>
+              <div
+                className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
+                  navbar ? "p-12 md:p-0 block" : "hidden"
+                }`}
+              >
+                <ul className="h-screen md:h-12 lg:text-sm md:text-sm text-xl items-center justify-center md:flex mt-12">
+                  {/* Opción del menú: Inicio */}
+                  <li className="font-bold text-[#FFD700] hover:text-white lg:mb-0 md:mb-0 mb-6 py-1 px-6 text-center md:border-b-0 hover:bg-[#6D0083] rounded transition-transform transform hover:scale-125">
+                    <Link href="/" onClick={() => setNavbar(!navbar)}>
+                      Iniciop
                     </Link>
                   </li>
-                  <li className="font-bold text-customPurple800 hover:text-white mb-10 py-1 px-1 text-center hover:bg-customPurple300 rounded transition-transform transform hover:scale-110 w-60 mx-auto">
-                    <Link href="/certs" onClick={() => setOpen(!open)}>
+
+                  {/* Opción del menú: Certificado */}
+                  <li className="font-bold text-[#FFD700] hover:text-white lg:mb-0 md:mb-0 mb-6 py-1 px-6 text-center md:border-b-0 hover:bg-[#6D0083] rounded transition-transform transform hover:scale-125">
+                    <Link
+                      href="/certificate"
+                      onClick={() => setNavbar(!navbar)}
+                    >
                       Certificado
                     </Link>
                   </li>
-                  <li className="font-bold text-customPurple800 hover:text-white mb-10 py-1 px-1 text-center hover:bg-customPurple300 rounded transition-transform transform hover:scale-110 w-60 mx-auto">
-                    <Link href="/graduate" onClick={() => setOpen(!open)}>
+
+                  {/* Opción del menú: Diplomados */}
+                  <li className="font-bold text-[#FFD700] hover:text-white lg:mb-0 md:mb-0 mb-6 py-1 px-6 text-center md:border-b-0 hover:bg-[#6D0083] rounded transition-transform transform hover:scale-125">
+                    <Link href="/graduate" onClick={() => setNavbar(!navbar)}>
                       Diplomados
                     </Link>
                   </li>
-                  <li className="font-bold text-customPurple800 hover:text-white mb-10 py-1 px-1 text-center hover:bg-customPurple300 rounded transition-transform transform hover:scale-110 w-60 mx-auto">
-                    <Link href="/about" onClick={() => setOpen(!open)}>
+
+                  {/* Opción del menú: Nosotros */}
+                  <li className="font-bold text-[#FFD700] hover:text-white lg:mb-0 md:mb-0 mb-6 py-1 px-6 text-center md:border-b-0 hover:bg-[#6D0083] rounded transition-transform transform hover:scale-125">
+                    <Link href="/about" onClick={() => setNavbar(!navbar)}>
                       Nosotros
                     </Link>
                   </li>
-                  <li className="font-bold text-customPurple800 hover:text-white mb-10 py-1 px-1 text-center hover:bg-customPurple300 rounded transition-transform transform hover:scale-110 w-60 mx-auto">
-                    <Link href="/" onClick={() => setOpen(!open)}>
-                      ¡Inscribete!
+
+                  {/* Opción del menú: ¡Inscríbete! */}
+                  <li className="font-bold text-[#FFD700] hover:text-white lg:mb-0 md:mb-0 mb-4 py-1 px-6 text-center md:border-b-0 hover:bg-[#6D0083] rounded transition-transform transform hover:scale-125">
+                    <Link href="/" onClick={() => setNavbar(!navbar)}>
+                      ¡Inscríbete!
                     </Link>
                   </li>
-                  <li className="flex justify-center mb-6">
+
+                  {/* Botón de inicio de sesión con icono */}
+                  <li className="lg:pl-40 flex justify-center items-center hover:text-pink-600 md:mt-0 mt-20">
                     <Link
                       href="/login"
-                      onClick={() => setOpen(!open)}
-                      className="py-1 px-4 rounded-xl text-customPurple300 hover:bg-customPurple300 hover:text-customYellow hover:scale-125 duration-300"
+                      className="bg-[#FFD700] py-1 px-4 rounded-xl text-[#6D0083] hover:bg-[#6D0083] hover:text-[#FFD700] hover:scale-125 duration-300"
                     >
-                      <FaUserCog className="text-4xl" />
+                      <FaUserCog className="md:text-xl text-4xl" />
                     </Link>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-          {/* Fondo gris */}
-          {open && (
-            <div
-              className=" opacity-90 min-h-screen h-full fixed top-0 left-0 w-full z-40 backdrop-blur-md"
-              onClick={() => setOpen(false)}
-            ></div>
-          )}
         </div>
-      </section>
+
+          {/* Contenido para dispositivos de escritorio */}
+          <div className={`hidden md:block ${navbar ? "block" : "hidden"}`}>
+            <div className="flex-1 justify-self-center rounded-lg pb-3 mt-2">
+              <ul className="h-screen md:h-12 lg:text-sm md:text-sm text-xl items-center justify-center md:flex  ">
+                <li className="font-extralight text-xl text-gray-100 lg:mb-0 md:mb-0 mb-6 py-1 px-6 text-center border border-transparent hover:border-testCian hover:bg-white/15 rounded transition-transform transform hover:scale-125">
+                  <Link href="/" onClick={() => setNavbar(!navbar)}>
+                    Inicio
+                  </Link>
+                </li>
+                <li className="font-extralight text-xl text-gray-100 lg:mb-0 md:mb-0 mb-6 py-1 px-6 text-center border border-transparent hover:border-testCian hover:bg-white/15 rounded transition-transform transform hover:scale-125">
+                  <Link href="/certs" onClick={() => setNavbar(!navbar)}>
+                    Certificado
+                  </Link>
+                </li>
+                <li className="font-extralight text-xl text-gray-100 lg:mb-0 md:mb-0 mb-6 py-1 px-6 text-center border border-transparent hover:border-testCian hover:bg-white/15 rounded transition-transform transform hover:scale-125">
+                  <Link href="/graduate" onClick={() => setNavbar(!navbar)}>
+                    Diplomados
+                  </Link>
+                </li>
+                <li className="font-extralight text-xl text-gray-100 lg:mb-0 md:mb-0 mb-6 py-1 px-6 text-center border border-transparent hover:border-testCian hover:bg-white/15 rounded transition-transform transform hover:scale-125">
+                  <Link href="/about" onClick={() => setNavbar(!navbar)}>
+                    Nosotros
+                  </Link>
+                </li>
+                <li className="font-extralight text-xl text-gray-100 lg:mb-0 md:mb-0 mb-6 py-1 px-6 text-center border border-transparent hover:border-testCian hover:bg-white/15 rounded transition-transform transform hover:scale-125">
+                  <Link href="/" onClick={() => setNavbar(!navbar)}>
+                    ¡Inscribete!
+                  </Link>
+                </li>
+                <li className="lg:pl-40 flex  justify-center items-center hover:text-primaryBlue md:mt-0 mt-20">
+                  <Link
+                    href="/login"
+                    className="bg-customOrange py-1 px-4 rounded-xl text-white hover:bg-gray-100 hover:text-primaryBlue hover:scale-125 duration-300 "
+                  >
+                    <FaUserCog className="md:text-xl text-4xl" />
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        
+        
+      </nav>
     </div>
   );
-};
+}
 
-export default Sidebar;
+export default Navbar;

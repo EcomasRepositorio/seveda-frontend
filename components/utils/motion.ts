@@ -1,38 +1,6 @@
 import { Variants } from 'framer-motion';
 
-export const navVariants = {
-  hidden: {
-    opacity: 0,
-    y: -100,
-    transition: {
-      type: 'spring',
-      stiffness: 30,
-      damping: 140,
-    },
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: 'spring',
-      stiffness: 80,
-      delay: 0.5,
-    },
-  },
-};
-
 export function slideInFromLeft(delay: number) {
-    return {
-      hidden: { x: -100, opacity: 0 },
-      visible: {
-        x: 0,
-        opacity: 1,
-        transition: {
-          delay: delay,
-          duration: 0.5,
-        },
-      },
-    };
   }
 
   export function slideInFromRight(delay: number) {
@@ -60,6 +28,26 @@ export function slideInFromLeft(delay: number) {
       },
     },
   };
+  export const navVariants = {
+    hidden: {
+      opacity: 0,
+      y: -100,
+      transition: {
+        type: 'spring',
+        stiffness: 30,
+        damping: 140,
+      },
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 80,
+        delay: 0.5,
+      },
+    },
+  };
 
   export const staggerContainer = (staggerChildren: string, delayChildren: string): Variants => ({
     hidden: {},
@@ -67,6 +55,22 @@ export function slideInFromLeft(delay: number) {
       transition: {
         staggerChildren: parseFloat(staggerChildren),
         delayChildren: parseFloat(delayChildren),
+      },
+    },
+  });
+
+  export const staggerContainerInitial = (staggerChildren: string, delayChildren: string): Variants => ({
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: parseFloat(staggerChildren),
+        delayChildren: parseFloat(delayChildren),
+      },
+    },
+    initial: { // Define la animación inicial
+      opacity: 0, // Por ejemplo, podrías establecer la opacidad en 0
+      transition: {
+        opacity: { duration: 1 }, // Asegúrate de que la transición sea instantánea
       },
     },
   });
@@ -98,18 +102,22 @@ export function slideInFromLeft(delay: number) {
 
   export const fadeIn = (direction: string, type: string, delay: number, duration: number) => ({
     hidden: {
-      x: direction === 'left' ? 100 : direction === 'right' ? -100 : 0,
-      y: direction === 'up' ? 100 : direction === 'down' ? -100 : 0,
       opacity: 0,
+      scale: 0.8, // Opcional: puedes agregar una escala inicial para hacer un efecto de zoom al aparecer
+      ...(direction === 'left' && { x: -100 }), // Mueve el componente hacia la izquierda
+      ...(direction === 'right' && { x: 100 }), // Mueve el componente hacia la derecha
+      ...(direction === 'up' && { y: -100 }), // Mueve el componente hacia arriba
+      ...(direction === 'down' && { y: 100 }), // Mueve el componente hacia abajo
     },
     show: {
-      x: 0,
-      y: 0,
       opacity: 1,
+      scale: 1, // Restaura la escala original
+      x: 0, // Reinicia la posición en el eje x
+      y: 0, // Reinicia la posición en el eje y
       transition: {
-        type,
-        delay,
-        duration,
+        type: type,
+        delay: delay,
+        duration: duration,
         ease: 'easeOut',
       },
     },
@@ -122,24 +130,10 @@ export function slideInFromLeft(delay: number) {
     },
   });
 
-  export const zoomIn = (delay: number, duration: string) => ({
-    hidden: {
-      scale: 0,
-      opacity: 0,
-    },
-    show: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        type: 'tween',
-        delay,
-        duration,
-        ease: 'easeOut',
-      },
-    },
-  });
 
-//RIZO
+  //NUEVAS ANIMACIONES
+
+  
   export const slideFromLeft = {
     hidden: { x: -200, opacity: 0 },
     visible: {
@@ -205,7 +199,7 @@ export function slideInFromLeft(delay: number) {
       scale: 1,
       opacity: 1,
       transition: {
-        duration: 2
+        duration: 2  
       }
     }
   }

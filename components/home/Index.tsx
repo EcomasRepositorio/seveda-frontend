@@ -118,19 +118,19 @@ const Home = () => {
                 className={`py-1 lg:text-right px-1 opacity-[0.9] ${icon.color}`}>
                 <h1 className='lg:text-2xl text-2xl text-center inline-flex lg:gap-6 gap-3'>
                   <Link key={`link-${i}`} href='https://web.facebook.com/corp.rizo' target="_blank"
-                    className="border border-[#ffa29b] p-2 rounded-full transition-transform transform hover:scale-150 shadow-xl shadow-[#ffa29b]">
+                    className="border border-[#ffa29b] p-2 rounded-full transition-transform transform hover:scale-150 shadow-xl ">
                     {icon.img1}
                   </Link>
                   <Link key={`link-${i+1}`} href='https://www.instagram.com/corporacion.rizo/' target="_blank"
-                    className="border border-[#ffa29b] p-2 rounded-full transition-transform transform hover:scale-150 shadow-xl shadow-[#ffa29b]">
+                    className="border border-[#ffa29b] p-2 rounded-full transition-transform transform hover:scale-150 shadow-xl ">
                     {icon.img2}
                   </Link>
                   <Link key={`link-${i+2}`} href='https://www.tiktok.com/@corporacion.rizo' target="_blank"
-                    className="border border-[#ffa29b] p-2 rounded-full transition-transform transform hover:scale-150 shadow-xl shadow-[#ffa29b]">
+                    className="border border-[#ffa29b] p-2 rounded-full transition-transform transform hover:scale-150 shadow-xl ">
                     {icon.img3}
                   </Link>
                   <Link key={`link-${i+3}`} href='https://wa.me/51961646248?text=Hola, deseo más información sobre los diplomados y cursos...' target="_blank"
-                    className="border border-[#ffa29b] p-2 rounded-full transition-transform transform hover:scale-150 shadow-xl shadow-[#ffa29b]">
+                    className="border border-[#ffa29b] p-2 rounded-full transition-transform transform hover:scale-150 shadow-xl ">
                     {icon.img4}
                   </Link>
                 </h1>
